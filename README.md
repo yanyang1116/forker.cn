@@ -1,6 +1,6 @@
-# web note
+# forker.cn
 
-先做网页版，做的全一点，跑起来
+先 csr，晚点在改 ssr
 
 ## husky v8 的安装流程
 
@@ -18,7 +18,6 @@ lint-staged 建议在 package.json 中指定
 这个 git add 是为了下面这一些格式化，然后做的一个命令，如果不配合下面这些格式化，实际上没太大意义
 
 husky TODO:
-
 -   ts
 -   eslint 格式化
 -   prettierrc 格式化

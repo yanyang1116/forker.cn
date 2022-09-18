@@ -1,7 +1,8 @@
 dist/
 node_modules/
 env/*.local
+.temp/
 
 .DS_Store
 *.log
-.vscode
+*.vscode

@@ -7,6 +7,23 @@
  */
 {
 	/**
+	 * 如果设置 ./
+	 * import { helloWorld } from "hello/world";
+	 * 会先找 node_modules，没找到则从 tsconfig 所在文件开始找
+	 * 同时，下文所有对配置，都会以 baseUrl 作为基础开始找
+	 */
+	"baseUrl": "./",
+	// "paths": {
+	// 	// 别名别名，会以 baseUrl 开始找
+	// 	"@controller/*": ["./controller/*"],
+	// 	"@middleware/*": ["./middleware/*"],
+	// 	"@service/*": ["./service/*"],
+	// 	"@typing/*": ["./typing/*"],
+	// 	"@utils/*": ["./utils/*"],
+	// 	"@config/*": ["./config/*"],
+	// 	"@/*": ["./*"]
+	// },
+	/**
 	 * 这里 "build/"
 	 * 其实是不要编译的，但是就不能共享 typing 里的申明，所以这里要 includes 进来
 	 * ts 里的其他情况都是一样的原则
@@ -25,11 +42,9 @@
 		 *
 		 * 这里值得注意的是，生成代码并不代表真正的能够投入环境中 run 了(esm 可以直接在浏览器运行，cjs 可直接在 node 环境运行)
 		 * 一般来说需要走额外的编译，才能在浏览器环境下运行
-		 *
-		 * 这里要 CommonJS + ES5 ，因为最终文件要在 node 下运行
 		 */
-		// "module": "CommonJS",
-		// "target": "ES5",
+		"module": "ES6",
+		"target": "ES5",
 		/**
 		 * https://typescript.bootcss.com/module-resolution.html
 		 * https://www.typescriptlang.org/docs/handbook/module-resolution.html
@@ -47,7 +62,7 @@
 		 * Enabling esModuleInterop will also enable allowSyntheticDefaultImports.
 		 */
 		"esModuleInterop": true,
-
+		// "sourceMap": true, // TODO 应该不用设置，到时候再观察下有么有
 		/**
 		 * https://www.typescriptlang.org/docs/handbook/compiler-options.html
 		 * 这里关心一下 allowSyntheticDefaultImports 的默认值
