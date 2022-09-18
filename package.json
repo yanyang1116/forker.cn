@@ -12,7 +12,8 @@
 		"husky:msg-install": "husky add .husky/commit-msg 'npx --no -- commitlint --edit \"$1\"'",
 		"husky:stage-install": "husky add .husky/pre-commit 'npm run lint:staged'",
 		"lint:msg": "commitlint --edit",
-		"lint:staged": "lint-staged"
+		"lint:staged": "lint-staged",
+		"prettier": "prettier --write"
 	},
 	"lint-staged": {
 		"*.{js,jsx,ts,tsx}": [],
