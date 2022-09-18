@@ -6,12 +6,14 @@ import App from './app';
  * 这个地方留着，做一个记录
  */
 // import 'normalize.css';
-import './assets/global.scss';
+
+import '@/assets/global.scss';
+// import '@/api/request';
+import '@/api/request';
+
 import { Provider } from 'react-redux';
 
-ReactDOMClient.createRoot(
-	document.getElementById('root') as HTMLElement
-).render(<App />);
+ReactDOMClient.createRoot(document.getElementById('root')!).render(<App />);
 
 {
 	/* <Provider store={store}> */

@@ -7,29 +7,24 @@
  */
 {
 	/**
-	 * 如果设置 ./
-	 * import { helloWorld } from "hello/world";
-	 * 会先找 node_modules，没找到则从 tsconfig 所在文件开始找
-	 * 同时，下文所有对配置，都会以 baseUrl 作为基础开始找
-	 */
-	"baseUrl": "./",
-	// "paths": {
-	// 	// 别名别名，会以 baseUrl 开始找
-	// 	"@controller/*": ["./controller/*"],
-	// 	"@middleware/*": ["./middleware/*"],
-	// 	"@service/*": ["./service/*"],
-	// 	"@typing/*": ["./typing/*"],
-	// 	"@utils/*": ["./utils/*"],
-	// 	"@config/*": ["./config/*"],
-	// 	"@/*": ["./*"]
-	// },
-	/**
 	 * 这里 "build/"
 	 * 其实是不要编译的，但是就不能共享 typing 里的申明，所以这里要 includes 进来
 	 * ts 里的其他情况都是一样的原则
 	 */
 	"include": ["src/**/*", "build/**/*", "typing/**/*"],
 	"compilerOptions": {
+		/**
+		 * 如果设置 ./
+		 * import { helloWorld } from "hello/world";
+		 * 会先找 node_modules，没找到则从 tsconfig 所在文件开始找
+		 * 同时，下文所有对配置，都会以 baseUrl 作为基础开始找
+		 */
+		"baseUrl": "./",
+		"paths": {
+			// 别名别名，会以 baseUrl 开始找
+			"@/assets/*": ["src/assets/*"],
+			"@/api/*": ["src/api/*"]
+		},
 		// 插件，能在 css modules 下出 style 的相关提示
 		"plugins": [{ "name": "typescript-plugin-css-modules" }],
 		"allowJs": true,
