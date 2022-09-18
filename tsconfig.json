@@ -30,6 +30,8 @@
 	 */
 	"include": ["src/**/*", "build/**/*", "typing/**/*"],
 	"compilerOptions": {
+		// 插件，能在 css modules 下出 style 的相关提示
+		"plugins": [{ "name": "typescript-plugin-css-modules" }],
 		"allowJs": true,
 		"jsx": "react-jsx",
 		/**

@@ -27,16 +27,21 @@ const getStyleLoaders = (cssOptions, preProcessor) => {
 			// options: { publicPath: '../../' }
 		},
 		/**
+		 * 废弃：
+		 * 这个 loader 是不需要的，有更好的解决办法:
+		 * https://www.npmjs.com/package/typescript-plugin-css-modules#visual-studio-code
+		 * 不过，这个 loader 放这边，以后加 loader 的时候可以参考
+		 *
 		 * 生成 scss-module 声明文件
 		 * https://github.com/Megaputer/dts-css-modules-loader
 		 * 放这里是有道理的，要等 css 文件出来之后，才能构建平级的声明关系
 		 */
-		preProcessor?.isCssModule && {
-			loader: 'dts-css-modules-loader',
-			options: {
-				namedExport: true,
-			},
-		},
+		// preProcessor?.isCssModule && {
+		// 	loader: 'dts-css-modules-loader',
+		// 	options: {
+		// 		namedExport: true,
+		// 	},
+		// },
 		{
 			/**
 			 * css-loader 是用来处理 文件中被 import、require 的 css
