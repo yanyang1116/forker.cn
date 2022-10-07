@@ -1,7 +1,9 @@
-import { useEffect } from 'react';
+import React, { useEffect } from 'react';
+import { connect } from '@/store/index';
 
-export default function () {
-	useEffect(() => {}, []);
-
-	return <div>hellow</div>;
-}
+export default connect<['@article/detail', '@global/theme']>([
+	'@article/detail',
+	'@global/theme',
+])((props) => {
+	return <a>{props['@global/theme']}</a>;
+});

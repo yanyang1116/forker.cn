@@ -41,3 +41,8 @@
 // 	asyncAction: (key: AsyncActionCollection, params?: any) => Promise<any>;
 // 	dispatch: (action: () => SyncAction<any>) => void;
 // };
+
+declare interface ReduxAction {
+	type: string;
+	payload?: any;
+}

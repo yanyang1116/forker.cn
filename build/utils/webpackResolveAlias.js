@@ -7,6 +7,7 @@ const { appRootPathResolve } = require('./pathResolve');
 module.exports = {
 	'@/assets': appRootPathResolve('./src/assets/'),
 	'@/api': appRootPathResolve('./src/api/'),
+	'@/store': appRootPathResolve('./src/store/'),
 	// '@/assets': path.resolve(__dirname, '../../src/assets/'),
 	// '@/api/': appRootPathResolve('./src/api/'),
 	// '@/assets': path.resolve(__dirname, './src/assets/'),

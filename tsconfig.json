@@ -21,9 +21,10 @@
 		 */
 		"baseUrl": "./",
 		"paths": {
-			// 别名别名，会以 baseUrl 开始找
+			// 别名，会以 baseUrl 开始找
 			"@/assets/*": ["src/assets/*"],
-			"@/api/*": ["src/api/*"]
+			"@/api/*": ["src/api/*"],
+			"@/store/*": ["src/store/*"]
 		},
 		// 插件，能在 css modules 下出 style 的相关提示
 		"plugins": [{ "name": "typescript-plugin-css-modules" }],
@@ -74,6 +75,7 @@
 
 		// 下面这几个是保持良好习惯建议开启的，虽然实际使用中成本可能会很高
 		"strictNullChecks": true,
+		"strictBindCallApply": true, // 严格检查 call、apply 导致的 this 变化可能带来的错误
 		"noUnusedParameters": true,
 		"noUnusedLocals": false, // 是在开发时候调试成本太高了，关闭
 		"noImplicitAny": true
