@@ -24,7 +24,8 @@
 			// 别名，会以 baseUrl 开始找
 			"@/assets/*": ["src/assets/*"],
 			"@/api/*": ["src/api/*"],
-			"@/store/*": ["src/store/*"]
+			"@/store/*": ["src/store/*"],
+			"@/typing/*": ["typing/*"]
 		},
 		// 插件，能在 css modules 下出 style 的相关提示
 		"plugins": [{ "name": "typescript-plugin-css-modules" }],

@@ -8,6 +8,7 @@ module.exports = {
 	'@/assets': appRootPathResolve('./src/assets/'),
 	'@/api': appRootPathResolve('./src/api/'),
 	'@/store': appRootPathResolve('./src/store/'),
+	'@/typing': appRootPathResolve('./typing/'),
 	// '@/assets': path.resolve(__dirname, '../../src/assets/'),
 	// '@/api/': appRootPathResolve('./src/api/'),
 	// '@/assets': path.resolve(__dirname, './src/assets/'),

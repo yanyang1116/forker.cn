@@ -1,7 +1,6 @@
-export const setTheme = (payload: any) => {
+const setTheme = () => {
 	return {
 		type: 'SET_THEME',
-		payload,
 	};
 };
 
