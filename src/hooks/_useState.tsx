@@ -27,14 +27,6 @@ import { useImmer } from 'use-immer';
 import moment from 'moment';
 import config from '@/config/indexDB';
 
-interface IndexDBStateRecordItem {
-	time: number;
-	path: string;
-	newValue: any;
-	oldValue: any;
-	UA: string;
-}
-
 // TODO 可能存在跨 0点 的情况，暂时不需要关心
 const today = `${moment(new Date()).format('YYYY-MM-DD')}`;
 get(`${config.stateRecordKey}_${today}`).then((v) => {
@@ -53,9 +45,10 @@ export default (initValue: any) => {
 				{
 					time: +new Date(),
 					path: location.href,
-					newValue: value,
+					nextValue: value,
 					oldValue: state,
 					UA: navigator.userAgent,
+					type: 'state',
 				},
 			]
 		);

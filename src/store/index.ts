@@ -7,7 +7,7 @@ import { createStore, applyMiddleware } from 'redux';
 import type { Dispatch } from 'redux';
 
 import rootReducer from './reducer/index';
-import logger from './middleware/logger';
+import record from './middleware/record';
 import storeAction from './action/index';
 import storeState from './state/index';
 
@@ -106,5 +106,5 @@ export const connect = <K extends (StoreKeys | ActionKeys)[]>(
 
 export default createStore(
 	rootReducer,
-	applyMiddleware(thunkMiddleware, logger)
+	applyMiddleware(thunkMiddleware, record)
 );

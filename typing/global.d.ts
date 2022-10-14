@@ -11,6 +11,15 @@ import { EnumArticleStatus } from './globalEnum.d';
 type ToUnionOfFunction<T> = T extends any ? (x: T) => any : never;
 
 declare global {
+	interface IndexDBStateRecordItem {
+		time: number;
+		path: string;
+		oldValue: any;
+		UA: string;
+		type: 'state' | 'store';
+		nextValue?: any;
+		payload?: any;
+	}
 	interface Window {}
 	namespace NodeJS {
 		interface ProcessEnv {

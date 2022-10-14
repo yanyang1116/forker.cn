@@ -22,26 +22,25 @@ export default connect<
 	// })
 	const [aa, setA] = useState(12313);
 
-	setA(qqqq.dd);
+	// setA(qqqq.dd);
 
-	// const a = async () => {
-	// 	setA(qqq.dd);
-	// 	// await props['$article/asyncSetList']();
-	// 	// await props['$article/setDetail']({
-	// 	// 	id: '',
-	// 	// 	title: 'fdgasdf',
-	// 	// 	abstract: '',
-	// 	// 	createTime: 43,
-	// 	// 	modifyTime: 3453,
-	// 	// 	author: 'afswqr',
-	// 	// 	original: true,
-	// 	// 	tags: ['asdf'],
-	// 	// 	status: EnumArticleStatus.Draft,
-	// 	// 	views: 3,
-	// 	// 	likes: 3,
-	// 	// });
-	// 	// console.log(1231231231);
-	// };
+	const a = async () => {
+		await props['$article/asyncSetList']();
+		// await props['$article/setDetail']({
+		// 	id: '',
+		// 	title: 'fdgasdf',
+		// 	abstract: '',
+		// 	createTime: 43,
+		// 	modifyTime: 3453,
+		// 	author: 'afswqr',
+		// 	original: true,
+		// 	tags: ['asdf'],
+		// 	status: EnumArticleStatus.Draft,
+		// 	views: 3,
+		// 	likes: 3,
+		// });
+		// console.log(1231231231);
+	};
 	// return <a onClick={a}>{JSON.stringify(props)}</a>;
 	return <a onClick={a}>{aa}</a>;
 });
