@@ -5,6 +5,8 @@
  * 1. 可以不带任何参数，派发后做的逻辑可以在 reducer 中隐藏
  * 2. 可以把最后的 state ，告知 reducer ，让它来更新
  * 3. 可以是一些逻辑参数，让 reducer 判断，或者是发请求，来更新 state
+ *
+ * 每个要暴露的 action 函数的返回体，都 as const，不然 ts 不能准确推导
  */
 import article from './article';
 import global from './global';

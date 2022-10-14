@@ -13,14 +13,14 @@ const setDetail = (payload: IArticleItem) => {
 	return {
 		type: 'SET_DETAIL',
 		payload,
-	};
+	} as const;
 };
 
 const setContent = (payload: string) => {
 	return {
 		type: 'SET_CONTENT',
 		payload,
-	};
+	} as const;
 };
 
 const asyncSetList = () => {
