@@ -10,5 +10,6 @@ module.exports = {
 	'@/store': appRootPathResolve('./src/store/'),
 	'@/typing': appRootPathResolve('./typing/'),
 	'@/config': appRootPathResolve('./src/config'),
+	'@/hooks': appRootPathResolve('./src/hooks'),
 	'@/utils': appRootPathResolve('./src/utils'),
 };

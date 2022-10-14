@@ -1,0 +1,4 @@
+{
+	"main": "useImmer.tsx",
+	"typings": "index.d.ts"
+}

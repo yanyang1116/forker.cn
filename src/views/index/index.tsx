@@ -1,8 +1,7 @@
 import React, { useEffect } from 'react';
 import { EnumArticleStatus } from '@/typing/globalEnum.d';
 import { connect } from '@/store/index';
-import { useImmer } from 'use-immer';
-import useState from '../../hooks/_useState';
+import { useImmer } from '@/hooks/useImmer';
 
 export default connect<
 	[
@@ -20,8 +19,12 @@ export default connect<
 	// const [test, setTest] = useImmer(false, (a) => {
 	// 	console.log(123123, a)
 	// })
-	const [aa, setA] = useState(12313);
+	const [aa, setA] = useImmer(12313);
+	// useImmer
 
+	// useImmer
+	// useImmer
+	// useImmer;
 	// setA(qqqq.dd);
 
 	const a = async () => {

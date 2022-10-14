@@ -21,9 +21,9 @@
  * 每次初始化应用，检查未在断点续传的数据、离当前时间超过一小时的数据，进行清理
  */
 
-import { useState } from 'react';
 import { get, set, update } from 'idb-keyval';
-import { useImmer } from 'use-immer';
+import { useImmer as _useImmer } from 'use-immer';
+
 import moment from 'moment';
 import config from '@/config/indexDB';
 
@@ -35,8 +35,8 @@ get(`${config.stateRecordKey}_${today}`).then((v) => {
 });
 
 // TODO 分包
-export default (initValue: any) => {
-	const [state, setState] = useImmer(initValue);
+export const useImmer = (initValue: any) => {
+	const [state, setState] = _useImmer(initValue);
 	const wrapperSetState = (value: any) => {
 		update(
 			`${config.stateRecordKey}_${today}`,
