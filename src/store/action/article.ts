@@ -57,4 +57,5 @@ export default {
 	setDetail,
 	asyncSetList,
 	setContent,
+	setList,
 };

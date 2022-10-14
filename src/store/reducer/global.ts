@@ -1,4 +1,5 @@
 import globalState from '../state/global';
+import type { ReduxAction } from '../index.d';
 
 export default (state = { ...globalState }, action: ReduxAction) => {
 	switch (action.type) {

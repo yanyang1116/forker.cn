@@ -1,4 +1,5 @@
 import articleState from '../state/article';
+import type { ReduxAction } from '../index.d';
 
 export default (state = { ...articleState }, action: ReduxAction) => {
 	switch (action.type) {

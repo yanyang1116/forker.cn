@@ -38,6 +38,11 @@ get(`${config.stateRecordKey}_${today}`).then((v) => {
 export const useImmer = (initValue: any) => {
 	const [state, setState] = _useImmer(initValue);
 	const wrapperSetState = (value: any) => {
+		/**
+		 * 1. 如果外面是改值，暴露出去的是副本，外面的变化是不会影响里面的
+		 * 2. 如果外面是引用，暴露出去的，只是第一层是副本，外面的修改会影响里面
+		 * 3. 所以，这里需要用不可变数据。组织直接改引用的操作
+		 */
 		update(
 			`${config.stateRecordKey}_${today}`,
 			(iv: IndexDBStateRecordItem[]) => [
