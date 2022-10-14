@@ -25,6 +25,8 @@
 			"@/assets/*": ["src/assets/*"],
 			"@/api/*": ["src/api/*"],
 			"@/store/*": ["src/store/*"],
+			"@/utils/*": ["src/utils/*"],
+			"@/config/*": ["src/config/*"],
 			"@/typing/*": ["typing/*"]
 		},
 		// 插件，能在 css modules 下出 style 的相关提示

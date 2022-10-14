@@ -18,6 +18,7 @@ lint-staged 建议在 package.json 中指定
 这个 git add 是为了下面这一些格式化，然后做的一个命令，如果不配合下面这些格式化，实际上没太大意义
 
 husky TODO:
+
 -   ts
 -   eslint 格式化
 -   prettierrc 格式化
@@ -26,9 +27,26 @@ husky TODO:
 
 es lint、ts lint、style lint TODO
 
-
 ## webpack https 调试 TODO
+
 ## 生产模式 dll，ts fork 优化 TODO
+
 ## 生产配置 TODO
+
 ## tsconfig 和目前 webpack 关系
+
 ## webpack 5 代理？？？
+
+## 前端监控及用户行为复现的思路
+
+1. 通过 useUpdate、store 监听值的变化，记录在 indexDB 中
+2. 一旦 window.onerror 发生错误，把完整日志上传
+
+完整需要分类和清空机制
+
+from: state
+type:
+path:
+
+每小时清空一次
+发生错误，上传现在有的即可

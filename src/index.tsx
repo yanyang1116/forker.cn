@@ -7,10 +7,12 @@ import { Provider } from 'react-redux';
  */
 // import 'normalize.css';
 import '@/assets/global.scss';
+import errorLog from '@/utils/errorLog';
 
 import App from './app';
 import store from '@/store/index';
 
+errorLog();
 ReactDOMClient.createRoot(document.getElementById('root')!).render(
 	<Provider store={store}>
 		<App />

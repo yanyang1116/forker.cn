@@ -9,15 +9,6 @@ module.exports = {
 	'@/api': appRootPathResolve('./src/api/'),
 	'@/store': appRootPathResolve('./src/store/'),
 	'@/typing': appRootPathResolve('./typing/'),
-	// '@/assets': path.resolve(__dirname, '../../src/assets/'),
-	// '@/api/': appRootPathResolve('./src/api/'),
-	// '@/assets': path.resolve(__dirname, './src/assets/'),
-	// '@static':
-	// '@/const/': appRootPathResolve('./src/const/'),
-	// '@/hooks/': appRootPathResolve('./src/hooks/'),
-	// '@/store/': appRootPathResolve('./src/store/'),
-	// '@/utils/': appRootPathResolve('./src/utils/'),
-	// '@/views/': appRootPathResolve('./src/views/'),
-	// '@/': appRootPathResolve('./src/'),
-	// '@/typing/': appRootPathResolve('./typing/'),
+	'@/config': appRootPathResolve('./src/config'),
+	'@/utils': appRootPathResolve('./src/utils'),
 };
