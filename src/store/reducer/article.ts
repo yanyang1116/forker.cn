@@ -1,25 +1,22 @@
 import articleState from '../state/article';
 import type { ReduxAction } from '../index.d';
 
-export default (state = { ...articleState }, action: ReduxAction) => {
+export default (
+	state: typeof articleState = articleState,
+	action: ReduxAction
+) => {
 	switch (action.type) {
 		case 'SET_LIST':
-			return {
-				...state,
-				list: action.payload,
-			};
+			state.list = action.payload;
+			return state;
 
 		case 'SET_DETAIL':
-			return {
-				...state,
-				detail: action.payload,
-			};
+			state.detail = action.payload;
+			return state;
 
 		case 'SET_CONTENT':
-			return {
-				...state,
-				content: action.payload,
-			};
+			state.content = action.payload;
+			return state;
 
 		default:
 			return state;
