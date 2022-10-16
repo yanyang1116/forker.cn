@@ -21,7 +21,7 @@
  * 每次初始化应用，检查未在断点续传的数据、离当前时间超过一小时的数据，进行清理
  */
 
-import { get, set, update } from 'idb-keyval';
+import { update } from 'idb-keyval';
 import { useImmer as _useImmer } from 'use-immer';
 
 import moment from 'moment';
@@ -29,12 +29,8 @@ import config from '@/config/indexDB';
 
 // TODO 可能存在跨 0点 的情况，暂时不需要关心
 const today = `${moment(new Date()).format('YYYY-MM-DD')}`;
-get(`${config.stateRecordKey}_${today}`).then((v) => {
-	if (v) return;
-	set(`${config.stateRecordKey}_${today}`, []);
-});
+const todayKey = `${config.stateRecordKey}_${today}`;
 
-// TODO 分包
 export const useImmer = (initValue: any) => {
 	const [state, setState] = _useImmer(initValue);
 	const wrapperSetState = (value: any) => {
@@ -43,20 +39,17 @@ export const useImmer = (initValue: any) => {
 		 * 2. 如果外面是引用，暴露出去的，只是第一层是副本，外面的修改会影响里面
 		 * 3. 所以，这里需要用不可变数据。组织直接改引用的操作
 		 */
-		update(
-			`${config.stateRecordKey}_${today}`,
-			(iv: IndexDBStateRecordItem[]) => [
-				...iv,
-				{
-					time: +new Date(),
-					path: location.href,
-					nextValue: value,
-					oldValue: state,
-					UA: navigator.userAgent,
-					type: 'state',
-				},
-			]
-		);
+		update(todayKey, (iv: IndexDBStateRecordItem[]) => [
+			...iv,
+			{
+				time: +new Date(),
+				path: location.href,
+				nextValue: value,
+				oldValue: state,
+				UA: navigator.userAgent,
+				type: 'state',
+			},
+		]);
 		setState(value);
 	};
 	return [state, wrapperSetState];
