@@ -1,22 +1,18 @@
 /**
  * @file useFetch
  */
-import axios, { AxiosRequestConfig, ResponseType } from 'axios';
+import axios, { AxiosRequestConfig } from 'axios';
 
-export type extraHeaders = Record<string, any> & {
-	responseType: ResponseType;
-	withCredentials: boolean;
-};
+export type extraHeaders = Record<string, any>;
 
 const sendWrap = (method: 'post' | 'get') => {
-	return (path: string, data: any, extraHeaders?: extraHeaders) => {
+	return (path: string, data: any, extraHeaders?: Record<string, any>) => {
 		const config: AxiosRequestConfig = {
-			baseURL: extraHeaders?.baseURL ?? 'https://demo.com',
+			baseURL: extraHeaders?.baseURL ?? 'http://localhost:8899/api',
 			method,
 			url: path,
-			withCredentials: !!extraHeaders?.withCredentials,
-			responseType: extraHeaders?.responseType,
-			headers: extraHeaders,
+			withCredentials: !!extraHeaders?.withCredentials, // 跨域是否允许携带 cookie 凭证
+			...extraHeaders,
 		};
 		config.method === 'get' && (config.params = data);
 		config.method === 'post' && (config.data = data);

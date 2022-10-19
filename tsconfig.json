@@ -47,6 +47,8 @@
 		 */
 		"module": "ES6",
 		"target": "ES5",
+		// 迭代器降级，允许使用 iterator，即使 target 低于 es6，如果 target 大于等于 es6 则不需要这个配置
+		"downlevelIteration": true,
 		/**
 		 * https://typescript.bootcss.com/module-resolution.html
 		 * https://www.typescriptlang.org/docs/handbook/module-resolution.html

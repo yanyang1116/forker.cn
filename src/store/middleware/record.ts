@@ -18,6 +18,7 @@ export default (store: Store) => (next: any) => (action: ReduxAction) => {
 	 * 2. 如果外面是引用，暴露出去的，只是第一层是副本，外面的修改会影响里面
 	 * 3. 所以，这里需要用不可变数据。组织直接改引用的操作
 	 */
+	// update 是异步的，这里主要不想影响下文逻辑，不用等待更新结果
 	update(todayKey, (iv: IndexDBStateRecordItem[]) => [
 		...iv,
 		{
