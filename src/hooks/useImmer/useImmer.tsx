@@ -26,6 +26,7 @@ import { useImmer as _useImmer } from 'use-immer';
 
 import moment from 'moment';
 import config from '@/config/indexDB';
+import type { IndexDBStateRecordItem } from '@/utils/behaviorRecord/typing.d';
 
 // TODO 可能存在跨 0点 的情况，暂时不需要关心
 const today = `${moment(new Date()).format('YYYY-MM-DD')}`;

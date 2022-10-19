@@ -9,17 +9,8 @@
 import { EnumArticleStatus } from './globalEnum.d';
 
 type ToUnionOfFunction<T> = T extends any ? (x: T) => any : never;
-
+type Without<T, U> = { [P in Exclude<keyof T, keyof U>]?: never };
 declare global {
-	interface IndexDBStateRecordItem {
-		time: number;
-		path: string;
-		oldValue: any;
-		UA: string;
-		type: 'state' | 'store';
-		nextValue?: any;
-		payload?: any;
-	}
 	interface Window {}
 	namespace NodeJS {
 		interface ProcessEnv {
@@ -29,6 +20,9 @@ declare global {
 		}
 	}
 
+	// 互斥类型
+	type XOR<T, U> = (Without<T, U> & U) | (Without<U, T> & T);
+
 	// 联合类型转交叉类型
 	type UnionToIntersection<T> = ToUnionOfFunction<T> extends (
 		x: infer P
@@ -36,12 +30,12 @@ declare global {
 		? P
 		: never;
 
-	// 数组每一项转联合类型（重复会去掉）
+	// 数组转联合类型（重复会去掉）
 	type ArrToUnion<T> = T extends [infer F, ...infer Rest]
 		? F | ArrToUnion<Rest>
 		: never;
 
-	// 联合类型转 { string 的联合项: any } 的数组（不满足 string 类型的联合项会去掉）
+	// 联合类型转 { 联合每一项的值的 string: any } 的数组（不满足 string 类型的联合项会去掉）
 	type UnionToAnyStrRecord<T> = T extends string
 		? Record<`${T}`, any>
 		: never;
@@ -70,18 +64,20 @@ declare global {
 			: never;
 	}[keyof Obj];
 
-	interface IArticleItem {
-		id: string;
-		title: string;
-		abstract: string;
-		createTime: number;
-		modifyTime: number;
-		author: string;
-		original: boolean;
-		tags: string[];
-		status: EnumArticleStatus;
-		views: number;
-		likes: number;
+	namespace Article {
+		interface IArticleItem {
+			id: string;
+			title: string;
+			abstract: string;
+			createTime: number;
+			modifyTime: number;
+			author: string;
+			original: boolean;
+			tags: string[];
+			status: EnumArticleStatus;
+			views: number;
+			likes: number;
+		}
 	}
 }
 

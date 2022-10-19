@@ -4,6 +4,7 @@ import { get, set, keys, update, del } from 'idb-keyval';
 import moment from 'moment';
 import CryptoJS from 'crypto-js';
 import config from '@/config/indexDB';
+import { Toast } from 'antd-mobile';
 
 /**
  * 初始化样式，也可以不需要的，在这个项目的构建中，使用了 postcss reset 的方式
@@ -55,74 +56,69 @@ keys().then((keys) => {
 			const splice = new Map();
 			while (spliceCount < size) {
 				const item = content.slice(spliceCount, spliceCount + minSize);
-				item.text().then(async (res) => {
-					const key = CryptoJS.MD5(res).toString();
-					splice.set(key, item);
-					if (splice.size === totalCount) {
-						// 单独存一个正在续传的数据 -> 保存好之后删除处理过的 -> 然后针对当前这条开始上传
-						await update('breakPointUpload', (v: any[]) => {
-							return [
-								...v,
-								{
-									totalKey,
-									splice,
-								},
-							];
-						});
-						// await del('lastdayKey')
-						const convertData = (blob: Blob) => {
-							const fileReader = new FileReader();
-							fileReader.readAsDataURL(blob);
-							return new Promise((resolve, reject) => {
-								fileReader.onload = (e) => {
-									console.log(e?.target?.result);
-									resolve(e?.target?.result);
-								};
-								fileReader.onerror = () => {
-									reject('转化失败');
-								};
+				item.text()
+					.then(async (res) => {
+						const key = CryptoJS.MD5(res).toString();
+						splice.set(key, item);
+						if (splice.size === totalCount) {
+							// 单独存一个正在续传的数据 -> 保存好之后删除处理过的 -> 然后针对当前这条开始上传
+							await update('breakPointUpload', (v: any[]) => {
+								return [
+									...v,
+									{
+										totalKey,
+										splice,
+									},
+								];
 							});
-						};
-						const iterator = splice[Symbol.iterator]();
-						for (const item of iterator) {
-							const iterator = splice.keys();
-							let iteratorRecord: IteratorResult<string> = {
-								done: false,
-								value: '',
+							await del('lastdayKey');
+							const convertData = (blob: Blob) => {
+								const fileReader = new FileReader();
+								fileReader.readAsDataURL(blob);
+								return new Promise((resolve, reject) => {
+									fileReader.onload = (e) => {
+										resolve(e?.target?.result);
+									};
+									fileReader.onerror = () => {
+										reject('转化失败');
+									};
+								});
 							};
-							const sections: string[] = [];
-							while (!iteratorRecord.done) {
-								iteratorRecord = iterator.next();
-								!iteratorRecord.done &&
-									sections.push(iteratorRecord.value);
-							}
+							const iterator = splice[Symbol.iterator]();
 
-							const content = await convertData(item[1]);
-							const res = await api.breakPointUpload({
-								id: totalKey,
-								content,
-								section: item[0],
-								sections: sections,
-								suffix: '.json',
-							});
-							// TODO 拦截器没做好
-							// if (res?.data.value)
-							console.log(res, 123123);
-							debugger;
-							// if (res) break
+							for (const item of iterator) {
+								const iterator = splice.keys();
+								let iteratorRecord: IteratorResult<string> = {
+									done: false,
+									value: '',
+								};
+								const sections: string[] = [];
+								while (!iteratorRecord.done) {
+									iteratorRecord = iterator.next();
+									!iteratorRecord.done &&
+										sections.push(iteratorRecord.value);
+								}
+
+								const content = await convertData(item[1]);
+								const res = await api.breakPointUpload({
+									id: totalKey,
+									content: content as string,
+									section: item[0],
+									sections: sections,
+									suffix: '.json',
+								});
+								if (res.value.finished) break;
+							}
 						}
-						// splice.forEach(item => {
-						// 	api.breakpointResumeUpload({
-						// 		id: totalKey,
-						// 		content: ,
-						// 		section: ,
-						// 		sections: splice.keys(),
-						// 		suffix: '.json',
-						// 	})
-						// })
-						// console.log(.keys(), splice.values());
-					}
-				});
+					})
+					.catch((err) => {
+						Toast.show({
+							content:
+								typeof err === 'string'
+									? err
+									: JSON.stringify(err),
+						});
+					});
 				spliceCount += minSize;
 			}
 		})

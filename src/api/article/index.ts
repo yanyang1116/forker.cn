@@ -1,7 +1,7 @@
-import { useFetch, extraHeaders } from '../request';
+// import { useFetch, extraHeaders } from '../request';
 
-const { get, post } = useFetch();
+// const { get, post } = useFetch();
 
-export const list = (data?: any, headers?: extraHeaders) => {
-	get('', data, headers);
-};
+// export const list = (data?: any, headers?: extraHeaders) => {
+// 	get('', data, headers);
+// };

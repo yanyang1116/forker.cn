@@ -3,6 +3,7 @@ import { update } from 'idb-keyval';
 import moment from 'moment';
 import config from '@/config/indexDB';
 
+import type { IndexDBStateRecordItem } from '@/utils/behaviorRecord/typing.d';
 import type { ReduxAction } from '../index.d';
 
 // TODO 可能存在跨 0点 的情况，暂时不需要关心

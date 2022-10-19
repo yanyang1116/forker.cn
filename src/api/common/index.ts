@@ -1,7 +1,11 @@
-import { useFetch, extraHeaders } from '../request';
+import reqInstance from '../request';
+import type { Extra } from '../request';
+import type { IR_BreakPointUpload } from './response';
+import type { IP_BreakPointUpload } from './params';
 
-const { get, post } = useFetch();
-
-export const breakPointUpload = (data?: any, headers?: extraHeaders) => {
-	post('/common/breakPointUpload', data, headers);
+export const breakPointUpload = (
+	data?: IP_BreakPointUpload,
+	headers?: Extra
+): Promise<{ value: IR_BreakPointUpload; success: boolean }> => {
+	return reqInstance.post('/common/breakPointUpload', data, headers);
 };

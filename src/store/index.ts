@@ -1,7 +1,6 @@
 import React from 'react';
 import { connect as reduxConnect } from 'react-redux';
 import thunkMiddleware from 'redux-thunk';
-// import { createLogger } from 'redux-logger';
 import { bindActionCreators } from 'redux';
 import { createStore, applyMiddleware } from 'redux';
 import type { Dispatch } from 'redux';
@@ -49,7 +48,6 @@ export const connect = <K extends (StoreKeys | ActionKeys)[]>(
 		const result: Record<string, any> = {};
 		/**
 		 * Object.keys 的 ts 问题
-		 * https://stackoverflow.com/questions/55012174/why-doesnt-object-keys-return-a-keyof-type-in-typescript
 		 * https://stackoverflow.com/questions/70420283/typescript-how-to-correctly-type-key-and-value-parameters-in-object-entries-f
 		 */
 		const _storeAction = Object.assign(storeAction, null);

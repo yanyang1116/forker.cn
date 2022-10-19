@@ -2,14 +2,14 @@ import type { Dispatch } from 'redux';
 import { EnumArticleStatus } from '@/typing/globalEnum.d';
 import storeState from '../state/index';
 
-const setList = (payload: IArticleItem) => {
+const setList = (payload: Article.IArticleItem) => {
 	return {
 		type: 'SET_LIST',
 		payload,
 	};
 };
 
-const setDetail = (payload: IArticleItem) => {
+const setDetail = (payload: Article.IArticleItem) => {
 	return {
 		type: 'SET_DETAIL',
 		payload,
